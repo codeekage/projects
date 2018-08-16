@@ -9,16 +9,19 @@ app.get('/api/stuff', (req, res) => {
     res.send({
         payload : [
             {
+                id: 1,
                 name : "Agiri",
                 age: 10,
                 gender: "male"
             },
             {
+                id: 2,
                 name : "Abraham",
                 age: 10,
                 gender: "male"
             },
             {
+                id: 3,
                 name : "Junior",
                 age: 10,
                 gender: "male"
