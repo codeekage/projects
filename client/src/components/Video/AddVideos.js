@@ -2,14 +2,10 @@ import React, { Component } from 'react'
 import { addVideoMutation, getVideosQuery } from "../../query";
 import {  compose, graphql } from 'react-apollo'
 
-
 class AddVideos extends Component {
 
   constructor(props){
     super(props);
-
-    console.log(props);
-    
 
     this.state = {
       name : '',
@@ -18,23 +14,8 @@ class AddVideos extends Component {
       description: ''
     }
 
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-
-/*   displayVideos(){
-    let data = this.props.getVideosQuery;
-    if(data.loading){
-      console.log("Loading..");
-      
-    }else{
-      data.videos.map(videos => {
-        console.log(videos)
-      })
-    }
-  }
- */
 
   handleSubmit(e){
     e.preventDefault();
@@ -46,16 +27,11 @@ class AddVideos extends Component {
         link: videoLink,
         category: this.state.category,
         description: this.state.description
-      }
+      },
+      refetchQueries: [{
+        query: getVideosQuery
+      }]
     });
-    
-  
-    /* this.setState({
-      name: '',
-      link: '',
-      category: '',
-      description: ''
-    }) */
   }
 
   render() {
