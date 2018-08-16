@@ -1,67 +1,34 @@
+//Modules
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from "react-apollo";
+import { BrowserRouter, Route } from "react-router-dom";
+
+//Components
+import Header from './components/Header';
+import Footer from './components/Footer';
+import AddVideos from './components/Video/AddVideos';
+import Home from './components/Home/Home'
+
+//GraphQL Apollo
+const apolloClient = new ApolloClient({
+  uri: '/graphql'
+});
 
 class App extends Component {
-
-  constructor(props){
-
-    super(props);
-
-    this.state = {
-      payload : []
-    }
-
-   this.displayPayload = this.displayPayload.bind(this)
-  }
-
-  componentDidMount(){
-    this.getPayload();
-  }
-
-  getPayload = () => {
-    fetch('/api/stuff')
-      .then(res => res.json())
-      .then(payload => this.setState(payload))
-  }
-
-  displayPayload  = () => {
-    const {payload} = this.state;
-    console.log(payload)
-   if(payload){
-    
-      return payload.map((item, index) => {
-         return(
-
-         <div key={index}>
-            <h1>{item.name}</h1>
-            <div>
-            <p>{item.gender}</p>
-            <p>{item.age}</p>
-            </div>
-          </div>
-         )
-       })
-     
-   }else{
-     return(
-       <h1>Payload empty</h1>
-     )
-   }
-  }
-
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      {this.displayPayload()}
-      </div>
+      <BrowserRouter>
+      <ApolloProvider client={apolloClient}>
+        <div>
+          <Header />
+          <Route exact path='/' component={Home}/>
+          <Route exact path='/videos' component={AddVideos} />
+          <Footer/>
+        </div>
+
+      </ApolloProvider>
+      </BrowserRouter>
     );
   }
 }

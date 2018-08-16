@@ -1,17 +1,27 @@
 {
-  "name": "test_file",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.3"
-  }
+    "name": "vlognode",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": "https://codeekage/github.io/vlogapp",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "cookie-parser": "~1.4.3",
+        "cors": "^2.8.4",
+        "debug": "~2.6.9",
+        "express": "^4.16.3",
+        "express-graphql": "^0.6.12",
+        "graphql": "^0.13.2",
+        "http-errors": "~1.6.2",
+        "mongodb": "^3.1.1",
+        "mongoose": "^5.2.4",
+        "morgan": "~1.9.0"
+    },
+    "scripts": {
+        "start": "node ./bin/www",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
+    },
+    "devDependencies": {
+        "gh-pages": "^1.2.0"
+    }
 }
