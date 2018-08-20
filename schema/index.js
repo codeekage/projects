@@ -19,8 +19,7 @@ const VideoType = new GraphQLObjectType({
         name: {type : GraphQLString},
         link: {type: GraphQLString},
         description: {type: GraphQLString},
-        category: {type : GraphQLString},
-        status: {type: GraphQLInt}
+        category: {type : GraphQLString}
     })
 });
 
@@ -55,15 +54,13 @@ const Mutation = new GraphQLObjectType({
                 link: {type: new GraphQLNonNull(GraphQLString)},
                 description: {type: new GraphQLNonNull(GraphQLString)},
                 category: {type : new GraphQLNonNull(GraphQLString)},
-                status: {type : new GraphQLNonNull(GraphQLInt)}
             },
             resolve(parent, args){
                 let video = {
                     name: args.name,
                     link: args.link,
                     description: args.description,
-                    category: args.category,
-                    status: args.status
+                    category: args.category
                 };
                 return VideoModel.create(video);
             }

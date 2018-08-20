@@ -4,18 +4,27 @@ const {Schema} = mongoose;
 const VideoSchema = new Schema({
     name: {
         type : String,
+        required: [true, "Name cannot be null"]
     },
     link: {
         type: String,
+        required: [true, "Link cannot be null"]
+
     },
     description: {
         type: String,
+        required: [true, "Description cannot be null"]
+
     },
     category: {
-        type : String
+        type : String,
+        required: [true, "Category cannot be null"]
     },
     status : {
-        type : Number
+        type : Number,
+        required: [true, "status cannot be null"],
+        default: 0
+
     }
 });
 

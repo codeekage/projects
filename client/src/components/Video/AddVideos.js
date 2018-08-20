@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { addVideoMutation, getVideosQuery } from "../../query";
-import {  compose, graphql } from 'react-apollo'
-import swal from 'sweetalert'
+import {  compose, graphql } from 'react-apollo';
+import swal from 'sweetalert';
+import { Redirect } from "react-router-dom";
 class AddVideos extends Component {
 
   constructor(props){
     super(props);
 
-    this.state = {
+    this.state = { 
       name : '',
       link: '',
       category: '',
       description: '',
-      status: 0,
+      redirect: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,29 +28,48 @@ class AddVideos extends Component {
         name : this.state.name,
         link: this.state.link,
         category: this.state.category,
-        description: this.state.description,
-        status: 1
+        description: this.state.description
       },
       refetchQueries: [{
         query: getVideosQuery
       }]
     }).then((data) => {
-      console.log({value : data.data.addVideo.status});
       const {addVideo} = data.data;
-      if(addVideo.name !== "" && addVideo.link !== "" && addVideo.category !== "" && addVideo.description){
-        swal("done")
-      }else{
-        swal("make sure all fields")
-      }
-    }).catch(error => {
-      console.log(error);
-    })
+      swal({
+          title: `${addVideo.name} has been saved!`,
+          text: "Would want to Redirect?",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willRedirect) => {
+          if (willRedirect) {
+            this.setState({
+              redirect : true
+            })
+          } else {
+             this.setState({
+               name: '',
+               link: '',
+               category: '',
+               description: ''
+             })
+          }
+        });
 
-   
-    
+    }).catch(error => {
+        if(error){
+          swal("Failed", "check all fields", "warning")
+        }
+      
+    })
   }
 
   render() {
+    if(this.state.redirect === true){
+      return <Redirect to="/" />
+    }
+
     return (
       <div className="main">
         <div className="my-videos">
