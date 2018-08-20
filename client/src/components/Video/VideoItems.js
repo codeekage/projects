@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { getVideosQuery } from "../../query";
 import { compose, graphql } from 'react-apollo';
-import Plyr from 'react-plyr';
+//import Plyr from 'react-plyr';
 
 class VideoItems extends Component {
 
@@ -37,9 +37,12 @@ class VideoItems extends Component {
                     return (
                         <div key={video.id} className="item col-md-12 col-sm-12 col-lg-4">
                                 <div className="my-item">
-                                < Plyr
-                                type = "youtube" // or "vimeo"
-                                videoId = {video.link} />
+                                <iframe 
+                                title = {video.name}
+                                src = {video.link}
+                                frameBorder = "0"
+                                allow = "autoplay; encrypted-media"
+                                allowFullScreen > </iframe>
                                 <p className="video-title">{video.name}</p>
                                 </div>
                         </div>
@@ -62,6 +65,7 @@ class VideoItems extends Component {
                 <div className="row">
                 {this.renderVideos(this.props)}
                 </div>
+               
             </div>
         </div>
         </div>

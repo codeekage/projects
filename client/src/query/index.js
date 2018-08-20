@@ -14,13 +14,14 @@ const getVideosQuery = gql`
 `
 
 const addVideoMutation = gql`
-    mutation($name: String!, $link: String!, $category: String!, $description: String!){
-        addVideo(name:$name, link:$link, category:$category, description:$description){
+    mutation($name: String!, $link: String!, $category: String!, $description: String!, $status: Int!){
+        addVideo(name:$name, link:$link, category:$category, description:$description, status: $status){
             name
             link
             category
             description
             id
+            status
         }
     }
 `

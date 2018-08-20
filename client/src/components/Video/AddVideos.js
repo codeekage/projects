@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { addVideoMutation, getVideosQuery } from "../../query";
 import {  compose, graphql } from 'react-apollo'
-
+import swal from 'sweetalert'
 class AddVideos extends Component {
 
   constructor(props){
@@ -11,7 +11,8 @@ class AddVideos extends Component {
       name : '',
       link: '',
       category: '',
-      description: ''
+      description: '',
+      status: 0,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,19 +20,33 @@ class AddVideos extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    let videoLink = this.state.link.split('v=')[1];
+    //let videoLink = this.state.link.split('v=')[1];
 
     this.props.addVideoMutation({
       variables: {
         name : this.state.name,
-        link: videoLink,
+        link: this.state.link,
         category: this.state.category,
-        description: this.state.description
+        description: this.state.description,
+        status: 1
       },
       refetchQueries: [{
         query: getVideosQuery
       }]
-    });
+    }).then((data) => {
+      console.log({value : data.data.addVideo.status});
+      const {addVideo} = data.data;
+      if(addVideo.name !== "" && addVideo.link !== "" && addVideo.category !== "" && addVideo.description){
+        swal("done")
+      }else{
+        swal("make sure all fields")
+      }
+    }).catch(error => {
+      console.log(error);
+    })
+
+   
+    
   }
 
   render() {
