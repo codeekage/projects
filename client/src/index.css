@@ -215,7 +215,8 @@ body {
 }
 
 .navbar-brand {
-    font-family: 'Pacifico', cursive !important;
+/*     font-family: 'Pacifico', cursive !important;
+ */    font-family: 'Wallpoet', cursive !important;
 }
 
 .dropdown-menu {

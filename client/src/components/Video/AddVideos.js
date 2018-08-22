@@ -98,7 +98,7 @@ class AddVideos extends Component {
                       <textarea className="form-control" placeholder="A little bit about the video" value={this.state.description} onChange={(e) => this.setState({description: e.target.value})}></textarea>
                     </div>
 
-                    <label htmlFor="basic-url">Tags</label>
+                    <label htmlFor="basic-url">Tags. <small>seperate with a comma ',' eg: 'nodejs, awesome, always' no use of period '.' eg: 'nodejs' not 'node.js'</small></label>
                     <div className="input-group mb-3">
                       <input type="text" className="form-control" placeholder="Tags" value={this.state.category} onChange={(e) => {this.setState({category: e.target.value})}}/>
                     </div>

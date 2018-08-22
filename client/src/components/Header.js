@@ -35,7 +35,7 @@ export default class Header extends Component {
         return (
             <Nav>
 
-                <NavBrand url="./images/icon.png" width="40" height="40" title="Always Forward" />
+                <NavBrand url="/images/icon.png" width="40" height="40" title="Always Forward" />
                <NavButton onClick={this.handleCollapse}/>
                 <Collapse showing={showing}>
                     <div className="options pull-right">

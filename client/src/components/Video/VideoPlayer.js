@@ -39,9 +39,9 @@ class VideoPlayer extends Component {
             return(
                 <ul className="list-inline skill-list">
                     {
-                        tags.map(items => {
+                        tags.map((items, index) => {
                             return(
-                                <li className="list-inline-item">{items}</li>
+                                <li key={index} className="list-inline-item">{items}</li>
                             )
                         })
                     }
