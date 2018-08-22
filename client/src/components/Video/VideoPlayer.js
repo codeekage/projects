@@ -1,7 +1,55 @@
 import React, { Component } from 'react'
-import Plyr from 'react-plyr'
+import Plyr from 'react-plyr';
+import { graphql } from 'react-apollo';
+import { getVideoByIdQuery } from "../../query";
 
-export default class VideoPlayer extends Component {
+
+
+class VideoPlayer extends Component {
+
+    renderVideoDetails = () => {
+        const {videoById : video} = this.props.data;
+        
+        if(video){
+            return(
+               <div className="container">
+                    <h2 className="text-center">{video[0].name}</h2>
+                    <div className="row justify-content-center">
+                        <div className="col-6 play-item">
+                            <p className="text-justify">
+                                {video[0].description}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )
+        }else{
+            return(
+                <div>No Video to Show</div>
+            )
+        }
+
+    }
+
+    renderVideoTags =  () => {
+        const {videoById : video} = this.props.data;
+
+        if(video){
+            let tags = video[0].category.split(',');
+            return(
+                <ul className="list-inline skill-list">
+                    {
+                        tags.map(items => {
+                            return(
+                                <li className="list-inline-item">{items}</li>
+                            )
+                        })
+                    }
+                </ul>
+            )
+        }
+    }
+
   render() {
     return (
       <div className="video-player">
@@ -11,27 +59,14 @@ export default class VideoPlayer extends Component {
         
         <div className="all-items">
            <div className="recommendations">
-                <div className="container">
-                    <h2 className="text-center">Title</h2>
-                    <div className="row justify-content-center">
-                        <div className="col-6 play-item">
-                            <p className="text-justify">
-                                he child combinator( > ) is placed between two CSS selectors.It matches only those elements matched by the second selector that are the children of elements matched by the first.Elements matched by the second selector must be the immediate children of the elements matched by the first selector.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                {this.renderVideoDetails()}
            </div>
         </div>
 
         <div className="skills">
             <div className="container">
                 <h4 className="txt-gray">Video Tags</h4>
-                <ul className="list-inline skill-list">
-                    <li className="list-inline-item">
-                        Leadership</li>
-                   
-                </ul>
+                {this.renderVideoTags()}
             </div>
         </div>
     </div>
@@ -39,5 +74,12 @@ export default class VideoPlayer extends Component {
 }
 }
 
-/*    <Plyr type = "youtube"
-   videoId = {this.props.match.params.id} /> */
+export default graphql(getVideoByIdQuery, {
+    options: (props) => {
+        return {
+            variables: {
+                video_id: props.match.params.id
+            }
+        }
+    }
+})(VideoPlayer);

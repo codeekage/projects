@@ -21,13 +21,15 @@ class AddVideos extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    //let videoLink = this.state.link.split('v=')[1];
+    let videoLink = this.state.link.split('v=')[1];
+   
 
     this.props.addVideoMutation({
       variables: {
         name : this.state.name,
         link: this.state.link,
         category: this.state.category,
+        video_id: videoLink,
         description: this.state.description
       },
       refetchQueries: [{

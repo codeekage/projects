@@ -19,7 +19,8 @@ const VideoType = new GraphQLObjectType({
         name: {type : GraphQLString},
         link: {type: GraphQLString},
         description: {type: GraphQLString},
-        category: {type : GraphQLString}
+        category: {type : GraphQLString},
+        video_id: {type : GraphQLString}
     })
 });
 
@@ -39,6 +40,13 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args){
                 return VideoModel.find({})
             }
+        },
+        videoById: {
+            type: new GraphQLList(VideoType),
+            args : {video_id : {type : GraphQLString}},
+            resolve(parent, args){
+                return VideoModel.find({video_id : args.video_id})
+            }
         }
     }
 });
@@ -54,13 +62,15 @@ const Mutation = new GraphQLObjectType({
                 link: {type: new GraphQLNonNull(GraphQLString)},
                 description: {type: new GraphQLNonNull(GraphQLString)},
                 category: {type : new GraphQLNonNull(GraphQLString)},
+                video_id: {type : new GraphQLNonNull(GraphQLString)},
             },
             resolve(parent, args){
                 let video = {
                     name: args.name,
                     link: args.link,
                     description: args.description,
-                    category: args.category
+                    category: args.category,
+                    video_id: args.video_id
                 };
                 return VideoModel.create(video);
             }

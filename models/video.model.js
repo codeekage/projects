@@ -24,7 +24,11 @@ const VideoSchema = new Schema({
         type : Number,
         required: [true, "status cannot be null"],
         default: 0
-
+    },
+    video_id : {
+        type : String,
+        required: [true, "video_id is required"],
+        unique: true 
     }
 });
 

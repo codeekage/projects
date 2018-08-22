@@ -48,25 +48,23 @@ class VideoItems extends Component {
         }else{
             if (data.videos) {
                 return data.videos.map(video => {
-                    let videoLink = video.link.split('embed/')[1]
-                  //  console.log(videoLink)
                     return (
                         <div key={video.id} className="item col-md-6 col-sm-12 col-lg-3">
                             <div className="card-item">
                                <iframe 
                                 className="iframe"
                                 title = {video.name}
-                                src = {`${video.link}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1`}
+                                src = {`https://www.youtube.com/embed/${video.video_id}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1`}
                                 frameBorder = "0"
                                 allow = "autoplay; encrypted-media"
                                 allowFullScreen > </iframe>
-                                <Link to={`/player/${videoLink}`}>
+                                <Link to={`/player/${video.video_id}`}>
                                     <div className="overflow">
                                         {video.name} 
                                     </div>
                                 </Link>
                                 </div>
-                                <p className="video-title" onClick={(e) => {this.onOpenModal(); this.loadVideo(videoLink)}}>{video.name}</p>
+                                <p className="video-title">{video.name}</p>
                                 
                         </div>
                     )

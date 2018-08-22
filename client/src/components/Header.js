@@ -40,20 +40,20 @@ export default class Header extends Component {
                 <Collapse showing={showing}>
                     <div className="options pull-right">
                         <NavUL>
-                            <NavItem link="/videos" icon="fas fa-video" />
+                            <NavItem link="/" icon="fas fa-home"/>
                             <NavItemDD link="/home" icon="fas fa-stream">
                                <DropDownItem link="/somehwe" title="ME"/>
                                <DropDownItem link="/somehwe" title="ME"/>
                                <DropDownItem link="/somehwe" title="ME"/>
                                <DropDownItem link="/somehwe" title="ME"/>
                             </NavItemDD>
+                            <NavItem link="/videos" icon="fas fa-video" />
                             <NavItemDD link="/home" icon="far fa-bell" badge="badge badge-danger notification" notification="4">
                                <DropDownItem link="/somehwe" title="FE"/>
                                <DropDownItem link="/somehwe" title="FE"/>
                                <DropDownItem link="/somehwe" title="FE"/>
                                <DropDownItem link="/somehwe" title="FE"/>
                             </NavItemDD>
-                            <NavItem link="/" icon="fas fa-home"/>
                            
                         </NavUL>
                     </div>
