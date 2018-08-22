@@ -55,8 +55,8 @@ class VideoItems extends Component {
                     let videoLink = video.link.split('embed/')[1]
                   //  console.log(videoLink)
                     return (
-                        <div key={video.id} className="item col-md-6 col-sm-12 col-lg-4">
-                                <div className="my-item">
+                        <div key={video.id} className="item col-md-6 col-sm-12 col-lg-3">
+                            <div className="card-item">
                                <iframe 
                                 className="iframe"
                                 title = {video.name}
@@ -91,7 +91,7 @@ class VideoItems extends Component {
       }
     return (
         <div className="my-videos">
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                 {this.renderVideos(this.props)}
 {/*                 <img  src="images/img.png" alt="image"/>
