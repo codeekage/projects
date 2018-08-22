@@ -1,2 +1,0 @@
-# vlogapp
-MERN 
