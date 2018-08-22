@@ -8,7 +8,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AddVideos from './components/Video/AddVideos';
-import Home from './components/Home/Home'
+import Home from './components/Home/Home';
+import VideoPlayer from './components/Video/VideoPlayer'
 
 //GraphQL Apollo
 const apolloClient = new ApolloClient({
@@ -24,6 +25,7 @@ class App extends Component {
           <Header />
           <Route exact path='/' component={Home}/>
           <Route exact path='/videos' component={AddVideos} />
+          <Route exact path='/player/:id' component={VideoPlayer} />
           <Footer/>
         </div>
 

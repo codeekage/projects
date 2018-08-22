@@ -14,13 +14,14 @@ body {
 .my-videos {
     position: relative;
     width: 100%;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     margin-top: 70px;
 }
 
-
 /* .item {
-    background: green!important;
+    background: green !important;
 } */
 
 .all-items {
@@ -33,6 +34,8 @@ body {
 
 .recommendations {
     position: relative;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     padding: 16px;
     width: 100%;
@@ -56,10 +59,12 @@ body {
 }
 
 .video-title {
-    font-weight: bold;
+    /*  font-weight: bold; */
     font-size: 1.2rem;
     color: #000000c4;
+    text-align: center;
     font-family: 'Montserrat', sans-serif;
+    padding: 5px;
 }
 
 .txt-grey {
@@ -133,13 +138,20 @@ body {
     margin: 0 auto;
     width: 100%;
     height: 100%;
+    -ms-flex-line-pack: center;
     align-content: center;
     text-align: center;
     opacity: 0.3;
     overflow: hidden;
     max-height: 500px;
+    -webkit-transition-property: all;
+    -o-transition-property: all;
     transition-property: all;
+    -webkit-transition-duration: .7s;
+    -o-transition-duration: .7s;
     transition-duration: .7s;
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     cursor: pointer;
 }
@@ -169,6 +181,7 @@ body {
 
 .w-80 {
     width: 86% !important;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
@@ -189,6 +202,7 @@ body {
 }
 
 .b-shadow {
+    -webkit-box-shadow: 0px -1px 0.5px 0px black;
     box-shadow: 0px -1px 0.5px 0px black;
 }
 
@@ -205,6 +219,7 @@ body {
 }
 
 .g-shadow {
+    -webkit-box-shadow: 0px 0px 11.5px 0px grey;
     box-shadow: 0px 0px 11.5px 0px grey;
 }
 
@@ -260,15 +275,64 @@ nav {
     font-size: 1rem;
 }
 
-.video-dashboard{
+.video-dashboard {
     position: relative;
-     background-color: white;
-     box-shadow: grey 0px 0px 0.1px 0px;
-     height: fit-content;
-     margin: 0 auto;
-     padding: 35px
+    background-color: white;
+    -webkit-box-shadow: grey 0px 0px 0.1px 0px;
+    box-shadow: grey 0px 0px 0.1px 0px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    padding: 35px
 }
 
-.bg-green{
+.bg-green {
     background-color: green
 }
+
+.overflow {
+    background: black;
+    position: absolute;
+    width: 100%;
+    height: 204px;
+    z-index: 9;
+    top: 3px;
+    left: 6px;
+    opacity: 0;
+}
+
+.iframe {
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+.video-player{
+margin-top: 55px;
+position: relative;
+width: 100%;
+background-color: green;
+height: fit-content;
+}
+
+.video-wrapper{
+
+}
+

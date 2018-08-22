@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { getVideosQuery } from "../../query";
 import { compose, graphql } from 'react-apollo';
-//import Plyr from 'react-plyr';
+import Modal from 'react-responsive-modal';
+import {Link}  from "react-router-dom";
+//import { Player } from "video-react";
+
+//import "../../node_modules/video-react/dist/video-react.css";
+
 
 class VideoItems extends Component {
 
@@ -9,42 +14,64 @@ class VideoItems extends Component {
         super(props);
 
         this.state = {
-            videos : ''
+            video : '',
+            open : false
         }
     }
+
+    onOpenModal = () => {
+        this.setState({
+            open : true
+        })
+    }
+
+    onCloseModal = () => {
+        this.setState({
+            open : false,
+            video: ''
+        }) 
+    }
+
+    loadVideo = (video) => {
+        this.setState({
+            video : video
+        })
+
+        console.log(video)
+    }
+
+
 
     renderVideos = ({getVideosQuery: data}) => {
         if (data.loading) {
             return(
                <div className="item col-md-12 col-sm-12 col-lg-4">
-                        <div className="my-item" style={{backgroundImage: `url('images/img.png')`}}>
-                            <div className="play-background">
-                                <img src="images/play.png" alt="play-icon"/>
-                            </div>
-                        </div>
-                        <ul className="list-inline fnt-sm mb-0">
-                            <li className="list-inline-item">
-                                <i className="fas fa-users txt-grey"></i> 207 Views</li>
-                            <li className="list-inline-item float-right">
-                                <i className="far fa-clock"></i> 1h 15m</li>
-                        </ul>
-                        <p className="video-title">loading</p>
+                    <p className="video-title">loading</p>
                 </div>
             )
         }else{
             if (data.videos) {
                 return data.videos.map(video => {
+                    let videoLink = video.link.split('embed/')[1]
+                  //  console.log(videoLink)
                     return (
-                        <div key={video.id} className="item col-md-12 col-sm-12 col-lg-4">
+                        <div key={video.id} className="item col-md-6 col-sm-12 col-lg-4">
                                 <div className="my-item">
-                                <iframe 
+                               <iframe 
+                                className="iframe"
                                 title = {video.name}
-                                src = {video.link}
+                                src = {`${video.link}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1`}
                                 frameBorder = "0"
                                 allow = "autoplay; encrypted-media"
                                 allowFullScreen > </iframe>
-                                <p className="video-title">{video.name}</p>
+                                <Link to={`/player/${videoLink}`}>
+                                    <div className="overflow">
+                                        {video.name} 
+                                    </div>
+                                </Link>
                                 </div>
+                                <p className="video-title" onClick={(e) => {this.onOpenModal(); this.loadVideo(videoLink)}}>{video.name}</p>
+                                
                         </div>
                     )
                 })
@@ -58,17 +85,40 @@ class VideoItems extends Component {
 
 
   render() {
+      const {open}  = this.state;
+      const styles = {
+          color: "black"
+      }
     return (
-        <div className="main">
         <div className="my-videos">
             <div className="container">
                 <div className="row">
                 {this.renderVideos(this.props)}
-                </div>
-               
+{/*                 <img  src="images/img.png" alt="image"/>
+ */}                </div>
             </div>
+       
+          <Modal open= {open}
+          onClose = {
+              this.onCloseModal
+          }
+          center
+          classNames = {
+              {
+                  transitionEnter: 'transition-enter',
+                  transitionEnterActive: 'transition-enter-active',
+                  transitionExit: 'transition-exit-active',
+                  transitionExitActive: 'transition-exit-active',
+              }
+          }
+          animationDuration = {
+                  1000
+              } styles={styles}>
+
+            <p>{this.state.video}</p>
+            </Modal>
         </div>
-        </div>
+        
     )
   }
 }
