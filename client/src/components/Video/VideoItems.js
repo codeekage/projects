@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { getVideosQuery } from "../../query";
 import { compose, graphql } from 'react-apollo';
-import Modal from 'react-responsive-modal';
 import {Link}  from "react-router-dom";
-//import { Player } from "video-react";
-
-//import "../../node_modules/video-react/dist/video-react.css";
 
 
 class VideoItems extends Component {
@@ -85,38 +81,13 @@ class VideoItems extends Component {
 
 
   render() {
-      const {open}  = this.state;
-      const styles = {
-          color: "black"
-      }
     return (
         <div className="my-videos">
             <div className="container-fluid">
                 <div className="row">
-                {this.renderVideos(this.props)}
-{/*                 <img  src="images/img.png" alt="image"/>
- */}                </div>
+                    {this.renderVideos(this.props)}
+                </div>
             </div>
-       
-          <Modal open= {open}
-          onClose = {
-              this.onCloseModal
-          }
-          center
-          classNames = {
-              {
-                  transitionEnter: 'transition-enter',
-                  transitionEnterActive: 'transition-enter-active',
-                  transitionExit: 'transition-exit-active',
-                  transitionExitActive: 'transition-exit-active',
-              }
-          }
-          animationDuration = {
-                  1000
-              } styles={styles}>
-
-            <p>{this.state.video}</p>
-            </Modal>
         </div>
         
     )
