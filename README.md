@@ -11,4 +11,5 @@
 9. RTC Application - https://github.com/codeekage/usdbtc
 10. Cbt API - https://github.com/codeekage/computer-base-test-node.js
 11. Java Chess Game - https://github.com/codeekage/java-chess
-
+12. Java Chess AI - https://github.com/codeekage/chess-ai/tree/master/docs PlayHere - https://codeekage.github.io/chess-ai/
+ 
