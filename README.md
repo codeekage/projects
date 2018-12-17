@@ -1,6 +1,4 @@
-# node-apis
-
-Some Apis
+# Eazy Link 😁🚀
 
 1. School Project - https://github.com/codeekage/node-scool
 2. Simple Microservice - https://github.com/codeekage/backend-microservice
