@@ -9,3 +9,6 @@
 7. Firebase Starter - https://github.com/codeekage/firebase-app-friendly-resturant
 8. React NBA - https://github.com/codeekage/nba
 9. RTC Application - https://github.com/codeekage/usdbtc
+10. Cbt API - https://github.com/codeekage/computer-base-test-node.js
+11. Java Chess Game - https://github.com/codeekage/java-chess
+
